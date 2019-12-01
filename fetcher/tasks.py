@@ -1,3 +1,4 @@
+from django.conf import settings
 from requests import HTTPError
 
 from currency_converter.celery import app
@@ -9,7 +10,7 @@ from fetcher.models import CurrencyRateBaseUSD
 @app.task(bind=True)
 def fetch_currency_rates(self):
     response = requests.get('https://openexchangerates.org/api/latest.json',
-                            params={'app_id': 'c91bdf36ce7e404cbbb3f8ebe37aa8f9', 'symbols': 'CZK,PLN,EUR,USD'})
+                            params={'app_id': settings.OPENEXCHANGERATES_APPID, 'symbols': 'CZK,PLN,EUR,USD'})
     try:
         response.raise_for_status()
         response_json = response.json()

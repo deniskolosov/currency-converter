@@ -5,6 +5,7 @@ To run:
 ```
 git clone https://github.com/deniskolosov/currency-converter.git
 cd currency-converter
+export OPENEXCHANGERATES_APPID=<your_app_id>
 pip install -r requirements.txt
 ./manage.py migrate
 ./manage.py runserver
